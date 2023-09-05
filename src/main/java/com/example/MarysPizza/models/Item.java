@@ -2,14 +2,6 @@ package com.example.MarysPizza.models;
 
 import java.math.BigDecimal;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
-
-import org.springframework.data.domain.Pageable;
-import org.springframework.hateoas.EntityModel;
-
-import com.example.MarysPizza.controllers.ItemController;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
