@@ -43,13 +43,4 @@ public class Item {
 
     @NotEmpty
     private String tipo;
-
-    public EntityModel<Item> toModel(){
-        return EntityModel.of(
-            this,
-            linkTo(methodOn(ItemController.class).show(idItem)).withSelfRel(),
-            linkTo(methodOn(ItemController.class).destroy(idItem)).withRel("delete"),
-            linkTo(methodOn(ItemController.class).index(Pageable.unpaged(), null)).withRel("listAll")
-        );
-    }
 }

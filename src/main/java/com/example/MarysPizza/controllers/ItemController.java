@@ -39,21 +39,14 @@ public class ItemController {
     PagedResourcesAssembler<Object> assembler;
 
     @GetMapping
-    public PagedModel<EntityModel<Object>> index(@PageableDefault(size = 5) Pageable pageable, @RequestParam(required = false) String busca){
-        Page<Item> page = (busca == null) ?
-            itemRepository.findAll(pageable) : 
-            itemRepository.findByTituloContaining(busca, pageable);
-
-        return assembler.toModel(page.map(Item::toModel));
+    public Page<Item>  Index(@PageableDefault(size = 5)Pageable pageable) {
+        return itemRepository.findAll(pageable);
     }
     
     @GetMapping("{idItem}")
-    public EntityModel<Item> show(@PathVariable Long idItem){
+    public ResponseEntity<Item> show(@PathVariable Long idItem){
         log.info("buscar item com id" + idItem);
-        var item = itemRepository.findById(idItem).orElseThrow(
-            () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "item não existente")
-        );
-        return item.toModel();
+        return ResponseEntity.ok(getItem(idItem));
     }
 
     @PostMapping
